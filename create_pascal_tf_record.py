@@ -136,8 +136,6 @@ def dict_to_tf_example(data,
 
 
 def main(_):
-    if FLAGS.set not in SETS:
-        raise ValueError('set must be in : {}'.format(SETS))
     print(FLAGS.data_dir)
     data_dir = FLAGS.data_dir
 
