@@ -19,7 +19,7 @@ Example usage:
     python object_detection/dataset_tools/create_pascal_tf_record.py \
         --data_dir=/home/user/VOCdevkit \
         --year=VOC2012 \
-        --output_path=/home/user/pascal.record
+        --output_path=pascal.record
 """
 from __future__ import absolute_import
 from __future__ import division
@@ -74,19 +74,13 @@ def dict_to_tf_example(data,
   Raises:
     ValueError: if the image pointed to by data['filename'] is not a valid JPEG
   """
-  print(data['folder'])
-  print(image_subdirectory)
+
   img_path = os.path.join(data['folder'], data['filename'])
-  print(img_path)
-  print(data['filename'])
+
   full_path = os.path.join(dataset_directory, img_path)
-  print(full_path)
   with tf.gfile.GFile(full_path, 'rb') as fid:
-    print('fid')
     encoded_jpg = fid.read()
-  print('2')
   encoded_jpg_io = io.BytesIO(encoded_jpg)
-  print('3')
   image = PIL.Image.open(encoded_jpg_io)
   if image.format != 'JPEG':
     raise ValueError('Image format not JPEG')
