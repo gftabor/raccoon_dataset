@@ -47,15 +47,12 @@ flags.DEFINE_string('label_map_path', 'training/object-detection.pbtxt','Path to
 flags.DEFINE_boolean('ignore_difficult_instances', False, 'Whether to ignore difficult instances')
 FLAGS = flags.FLAGS
 
-SETS = ['train', 'val', 'trainval', 'test']
-YEARS = ['VOC2007', 'VOC2012', 'merged']
-
 
 def dict_to_tf_example(data,
                        dataset_directory,
                        label_map_dict,
                        ignore_difficult_instances=False,
-                       image_subdirectory='JPEGImages'):
+                       image_subdirectory='images'):
   """Convert XML derived dict to tf.Example proto.
 
   Notice that this function normalizes the bounding box coordinates provided
