@@ -34,8 +34,8 @@ from lxml import etree
 import PIL.Image
 import tensorflow as tf
 
-from object_detection.utils import dataset_util
-from object_detection.utils import label_map_util
+#from object_detection.utils import dataset_util
+#from object_detection.utils import label_map_util
 
 
 flags = tf.app.flags
@@ -148,7 +148,8 @@ def main(_):
 
     #label_map_dict = label_map_util.get_label_map_dict(FLAGS.label_map_path)
 
-    examples_path = os.path.join(data_dir,FLAGS.set + '_labels.csv')
+    examples_path = os.path.join(data_dir,'data',FLAGS.set + '_labels.csv')
+    print(examples_path)
     annotations_dir = os.path.join(data_dir, FLAGS.annotations_dir)
     examples_list = dataset_util.read_examples_list(examples_path)
     for idx, example in enumerate(examples_list):
