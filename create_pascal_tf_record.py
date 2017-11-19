@@ -148,7 +148,7 @@ def main(_):
 
     #label_map_dict = label_map_util.get_label_map_dict(FLAGS.label_map_path)
 
-    examples_path = os.path.join(data_dir,'data',FLAGS.set + '_labels.csv')
+    examples_path = os.path.join(data_dir,'examples.txt')
     print(examples_path)
     annotations_dir = os.path.join(data_dir, FLAGS.annotations_dir)
     examples_list = dataset_util.read_examples_list(examples_path)
