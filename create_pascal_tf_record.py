@@ -146,7 +146,7 @@ def main(_):
 
     writer = tf.python_io.TFRecordWriter(FLAGS.output_path)
 
-    #label_map_dict = label_map_util.get_label_map_dict(FLAGS.label_map_path)
+    label_map_dict = label_map_util.get_label_map_dict(FLAGS.label_map_path)
 
     examples_path = os.path.join(data_dir,'examples.txt')
     print(examples_path)
