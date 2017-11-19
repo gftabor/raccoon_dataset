@@ -74,11 +74,19 @@ def dict_to_tf_example(data,
   Raises:
     ValueError: if the image pointed to by data['filename'] is not a valid JPEG
   """
-  img_path = os.path.join(data['folder'], image_subdirectory, data['filename'])
+  print(data['folder'])
+  print(image_subdirectory)
+  img_path = os.path.join(data['folder'], data['filename'])
+  print(img_path)
+  print(data['filename'])
   full_path = os.path.join(dataset_directory, img_path)
+  print(full_path)
   with tf.gfile.GFile(full_path, 'rb') as fid:
+    print('fid')
     encoded_jpg = fid.read()
+  print('2')
   encoded_jpg_io = io.BytesIO(encoded_jpg)
+  print('3')
   image = PIL.Image.open(encoded_jpg_io)
   if image.format != 'JPEG':
     raise ValueError('Image format not JPEG')
@@ -146,6 +154,7 @@ def main(_):
     examples_path = os.path.join(data_dir,'examples.txt')
     print(examples_path)
     annotations_dir = os.path.join(data_dir, FLAGS.annotations_dir)
+    print(annotations_dir)
     examples_list = dataset_util.read_examples_list(examples_path)
     for idx, example in enumerate(examples_list):
       if idx % 100 == 0:
@@ -154,8 +163,9 @@ def main(_):
       with tf.gfile.GFile(path, 'r') as fid:
         xml_str = fid.read()
       xml = etree.fromstring(xml_str)
+      print(xml_str)
       data = dataset_util.recursive_parse_xml_to_dict(xml)['annotation']
-    
+      print(data['filename'])
       tf_example = dict_to_tf_example(data, FLAGS.data_dir, label_map_dict,
                                       FLAGS.ignore_difficult_instances)
       writer.write(tf_example.SerializeToString())
